@@ -60,10 +60,29 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
     * 1070000 27.49 segundos en ejecución
     * 1080000 27.54 segundos en ejecución
     * 1090000 27.55 segundos en ejecución
+    
+    Tiempos con `B2ms`
+    
+    * 1000000 20.05 segundos en ejecución
+    * 1010000 20.28 segundos en ejecución
+    * 1020000 21.26 segundos en ejecución
+    * 1030000 21.25 segundos en ejecución
+    * 1040000 22.03 segundos en ejecución
+    * 1050000 22.41 segundos en ejecución
+    * 1060000 22.25 segundos en ejecución
+    * 1070000 22.71 segundos en ejecución
+    * 1080000 23.92 segundos en ejecución
+    * 1090000 23.85 segundos en ejecución
 
 8. Dírijase ahora a Azure y verifique el consumo de CPU para la VM. (Los resultados pueden tardar 5 minutos en aparecer).
 
 ![Imágen 2](images/part1/part1-vm-cpu.png)
+
+![](images/part1/cpu.PNG)
+
+`B2ms`
+
+![](images/part1/b2ms%20http.png)
 
 9. Ahora usaremos Postman para simular una carga concurrente a nuestro sistema. Siga estos pasos.
     * Instale newman con el comando `npm install newman -g`. Para conocer más de Newman consulte el siguiente [enlace](https://learning.getpostman.com/docs/postman/collection-runs/command-line-integration-with-newman/).
@@ -75,10 +94,17 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
     newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10 &
     newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10
     ```
+   ![](images/part1/newman.PNG)
+   ![](images/part1/newman%20peticiones.PNG)
+   ![](images/part1/newman%20-n10.PNG)
+
+   `B2ms`
+   ![](images/part1/b2msnewman.png)
 
 10. La cantidad de CPU consumida es bastante grande y un conjunto considerable de peticiones concurrentes pueden hacer fallar nuestro servicio. Para solucionarlo usaremos una estrategia de Escalamiento Vertical. En Azure diríjase a la sección *size* y a continuación seleccione el tamaño `B2ms`.
 
 ![Imágen 3](images/part1/part1-vm-resize.png)
+
 
 11. Una vez el cambio se vea reflejado, repita el paso 7, 8 y 9.
 12. Evalue el escenario de calidad asociado al requerimiento no funcional de escalabilidad y concluya si usando este modelo de escalabilidad logramos cumplirlo.
