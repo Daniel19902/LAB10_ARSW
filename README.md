@@ -49,7 +49,8 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 ![](images/part1/part1-vm-3000InboudRule.png)
 
 7. La función que calcula en enésimo número de la secuencia de Fibonacci está muy mal construido y consume bastante CPU para obtener la respuesta. Usando la consola del Browser documente los tiempos de respuesta para dicho endpoint usando los siguintes valores:
-    * 1000000
+   ![](images/part1/tiempo.PNG)
+    * 1000000 
     * 1010000
     * 1020000
     * 1030000
@@ -64,6 +65,12 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
 ![Imágen 2](images/part1/part1-vm-cpu.png)
 
+![](images/part1/cpu.PNG)
+
+`B2ms`
+
+![](images/part1/b2ms%20http.png)
+
 9. Ahora usaremos Postman para simular una carga concurrente a nuestro sistema. Siga estos pasos.
     * Instale newman con el comando `npm install newman -g`. Para conocer más de Newman consulte el siguiente [enlace](https://learning.getpostman.com/docs/postman/collection-runs/command-line-integration-with-newman/).
     * Diríjase hasta la ruta `FibonacciApp/postman` en una maquina diferente a la VM.
@@ -74,21 +81,42 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
     newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10 &
     newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALANCING_AZURE].postman_environment.json -n 10
     ```
+   ![](images/part1/newman.PNG)
+   ![](images/part1/newman%20peticiones.PNG)
+   ![](images/part1/newman%20-n10.PNG)
 
-10. La cantidad de CPU consumida es bastante grande y un conjunto considerable de peticiones concurrentes pueden hacer fallar nuestro servicio. Para solucionarlo usaremos una estrategia de Escalamiento Vertical. En Azure diríjase a la sección *size* y a continuación seleccione el tamaño `B2ms`.
+   `B2ms`
+   ![](images/part1/b2msnewman.png)
+
+   
+   
+
+11. La cantidad de CPU consumida es bastante grande y un conjunto considerable de peticiones concurrentes pueden hacer fallar nuestro servicio. Para solucionarlo usaremos una estrategia de Escalamiento Vertical. En Azure diríjase a la sección *size* y a continuación seleccione el tamaño `B2ms`.
 
 ![Imágen 3](images/part1/part1-vm-resize.png)
 
 11. Una vez el cambio se vea reflejado, repita el paso 7, 8 y 9.
 12. Evalue el escenario de calidad asociado al requerimiento no funcional de escalabilidad y concluya si usando este modelo de escalabilidad logramos cumplirlo.
+
+Observando los resultados mostrados con `B1ls` y comparándolos con `B2ms` podemos ver que efectivamente los resultados son bastante notorios, ya que el consumo de un 90 a 100 % se vieron reducidos a un consumo de tan solo
+un 30 a 45 % de uso de la máquina.
+
 13. Vuelva a dejar la VM en el tamaño inicial para evitar cobros adicionales.
 
 **Preguntas**
 
 1. ¿Cuántos y cuáles recursos crea Azure junto con la VM?
+
+* Memoria
+* red
+* procesamiento (cpu)
+* almacenamiento
+
 2. ¿Brevemente describa para qué sirve cada recurso?
 3. ¿Al cerrar la conexión ssh con la VM, por qué se cae la aplicación que ejecutamos con el comando `npm FibonacciApp.js`? ¿Por qué debemos crear un *Inbound port rule* antes de acceder al servicio?
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
+
+![](images/part1/pr4%20tabla.PNG)
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
