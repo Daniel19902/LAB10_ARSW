@@ -265,15 +265,67 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 
 **Preguntas**
 
-* ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
-* ¿Cuál es el propósito del *Backend Pool*?
-* ¿Cuál es el propósito del *Health Probe*?
-* ¿Cuál es el propósito de la *Load Balancing Rule*? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
-* ¿Qué es una *Virtual Network*? ¿Qué es una *Subnet*? ¿Para qué sirven los *address space* y *address range*?
-* ¿Qué son las *Availability Zone* y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea *zone-redundant*?
-* ¿Cuál es el propósito del *Network Security Group*?
-* Informe de newman 1 (Punto 2)
-* Presente el Diagrama de Despliegue de la solución.
+¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
+
+
+
+Azure Traffic Manager
+Azure Load Balancer
+Azure Application Gateway
+Azure Front Door
+
+
+
+¿Cuál es el propósito del Backend Pool?
+
+
+
+Es un componente crítico del balanceador de carga. Define el grupo de recursos que brindarán tráfico para una regla de equilibrio de carga determinada.
+
+
+
+¿Cuál es el propósito del Health Probe?
+
+
+
+Al usar reglas de equilibrio de carga con Azure Load Balancer, debe especificar Health probe para permitir que Load Balancer detecte el estado del punto de conexión de backend. La configuración del Health probe y las respuestas determinan qué instancias del grupo de backend recibirán nuevos flujos. Puede usar sondas de estado para detectar la falla de una aplicación en un endpoint de backend.
+
+
+
+¿Cuál es el propósito de la Load Balancing Rule? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
+
+
+
+Se usa para definir cómo se distribuye el tráfico entrante a todas las instancias dentro del grupo de backend. Una regla de equilibrio de carga asigna una configuración IP de frontend y un puerto determinados a varios puertos y direcciones IP de backend.
+
+
+
+¿Qué es una Virtual Network? ¿Qué es una Subnet? ¿Para qué sirven los address space y address range?
+
+
+
+es el bloque de construcción fundamental para su red privada en Azure. VNet permite que muchos tipos de recursos de Azure, como Azure Virtual Machines (VM), se comuniquen de forma segura entre sí, con Internet y con las redes locales, las subnets son divisiones de la red para poder organizarla de una mejor manera, es el rango de direcciones disponibles de la vnet y el address range es el rango de direcciones de la subnet
+
+
+
+¿Qué son las Availability Zone y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea zone-redundant?
+
+
+
+son ubicaciones aisladas dentro de las regiones del data centers desde las que se originan y operan los servicios de nube pública, se seleccionan 3 diferentes para asi asegurar la disponibilidad del servicio en caso de que alguna falle, una ip zone redundant significa que el balanceador se puede comunicar con ella independiente de la zona
+
+
+
+¿Cuál es el propósito del Network Security Group?
+
+
+
+Filtrar el tráfico de red hacia y desde los recursos de Azure en una red virtual de Azure. Un grupo de seguridad de red contiene reglas de seguridad que permiten o deniegan el tráfico de red entrante o el tráfico de red saliente de varios tipos de recursos de Azure. Para cada regla, puede especificar origen y destino, puerto y protocolo.
+
+
+
+Informe de newman 1 (Punto 2)
+Presente el Diagrama de Despliegue de la solución.
 
 
 
