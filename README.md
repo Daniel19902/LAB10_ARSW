@@ -50,6 +50,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
 7. La función que calcula en enésimo número de la secuencia de Fibonacci está muy mal construido y consume bastante CPU para obtener la respuesta. Usando la consola del Browser documente los tiempos de respuesta para dicho endpoint usando los siguintes valores:
    ![](images/part1/tiempo.PNG)
+<<<<<<< HEAD
     * 1000000 
     * 1010000
     * 1020000
@@ -60,6 +61,31 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
     * 1070000
     * 1080000
     * 1090000    
+=======
+    * 1000000 22.81 segundos en ejecución
+    * 1010000 23.23 segundos en ejecución
+    * 1020000 23.86 segundos en ejecución
+    * 1030000 24.28 segundos en ejecución
+    * 1040000 24.42 segundos en ejecución
+    * 1050000 24.60 segundos en ejecución
+    * 1060000 25.65 segundos en ejecución
+    * 1070000 27.49 segundos en ejecución
+    * 1080000 27.54 segundos en ejecución
+    * 1090000 27.55 segundos en ejecución
+    
+    Tiempos con `B2ms`
+    
+    * 1000000 20.05 segundos en ejecución
+    * 1010000 20.28 segundos en ejecución
+    * 1020000 21.26 segundos en ejecución
+    * 1030000 21.25 segundos en ejecución
+    * 1040000 22.03 segundos en ejecución
+    * 1050000 22.41 segundos en ejecución
+    * 1060000 22.25 segundos en ejecución
+    * 1070000 22.71 segundos en ejecución
+    * 1080000 23.92 segundos en ejecución
+    * 1090000 23.85 segundos en ejecución
+>>>>>>> e744e6877ea74020a35487eaad8d952528fd1b31
 
 8. Dírijase ahora a Azure y verifique el consumo de CPU para la VM. (Los resultados pueden tardar 5 minutos en aparecer).
 
@@ -87,13 +113,17 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
    `B2ms`
    ![](images/part1/b2msnewman.png)
+<<<<<<< HEAD
 
    
    
+=======
+>>>>>>> e744e6877ea74020a35487eaad8d952528fd1b31
 
 11. La cantidad de CPU consumida es bastante grande y un conjunto considerable de peticiones concurrentes pueden hacer fallar nuestro servicio. Para solucionarlo usaremos una estrategia de Escalamiento Vertical. En Azure diríjase a la sección *size* y a continuación seleccione el tamaño `B2ms`.
 
 ![Imágen 3](images/part1/part1-vm-resize.png)
+
 
 11. Una vez el cambio se vea reflejado, repita el paso 7, 8 y 9.
 12. Evalue el escenario de calidad asociado al requerimiento no funcional de escalabilidad y concluya si usando este modelo de escalabilidad logramos cumplirlo.
@@ -101,7 +131,11 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 Observando los resultados mostrados con `B1ls` y comparándolos con `B2ms` podemos ver que efectivamente los resultados son bastante notorios, ya que el consumo de un 90 a 100 % se vieron reducidos a un consumo de tan solo
 un 30 a 45 % de uso de la máquina.
 
+<<<<<<< HEAD
 13. Vuelva a dejar la VM en el tamaño inicial para evitar cobros adicionales.
+=======
+14. Vuelva a dejar la VM en el tamaño inicial para evitar cobros adicionales.
+>>>>>>> e744e6877ea74020a35487eaad8d952528fd1b31
 
 **Preguntas**
 
@@ -113,19 +147,64 @@ un 30 a 45 % de uso de la máquina.
 * almacenamiento
 
 2. ¿Brevemente describa para qué sirve cada recurso?
+
+* Memoria : memoria volatil.
+* red : conexion de a diferentes redes de internet.
+* procesamiento (cpu): capicidad de la maquina de procesar tareas.
+* Almacenamiento: capacidad de la maquina de almacenar datos.
+
 3. ¿Al cerrar la conexión ssh con la VM, por qué se cae la aplicación que ejecutamos con el comando `npm FibonacciApp.js`? ¿Por qué debemos crear un *Inbound port rule* antes de acceder al servicio?
+
+Por que la cerrar el puerto por el que se trabaja con el ssh puerto 22 la comunicacion la plicacion se ve cortada y por eso no se pueden comunicar, al crear otro puerto en 
+este caso 3000 estamos dejando que la aplicacion se comunique con nuestra maquina por un puerto diferente al 22 y por eso la cerrar la secion no se deberia cerrar la comincacion
+con la aplicacion.
+
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
 
 ![](images/part1/pr4%20tabla.PNG)
+<<<<<<< HEAD
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
+=======
+
+debido a que no esta optimizado con una memoria por lo que caqada vez que se hace la misma peticion tiene que recalcular el numero de fibonacci.
+5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU. 
+
+![](images/part1/cpu.PNG)
+
+esto se debe las caracteristicas de la maquina el nivel de memoria, procesamiento y almacenamineto son demaciado bajos lo que se requiere un nivel de uso de la maquina bastante
+alto
+
+>>>>>>> e744e6877ea74020a35487eaad8d952528fd1b31
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
     * Si hubo fallos documentelos y explique.
+    
+    ![](images/part1/newman%20-n10.PNG)
+    
+    aca podemos ver el numero de procesos el timepo que se demoro en terminar los 10 procesos y el tamaño de la informacion recivida
+    
 7. ¿Cuál es la diferencia entre los tamaños `B2ms` y `B1ls` (no solo busque especificaciones de infraestructura)?
+
+   ademas de aumentar las caracteristicas de las maquina `B2ms` y `B1ls` pertenecen a la familia de uso general donde su
+   Uso equilibrado de la CPU en proporción de memoria. Ideal para desarrollo y pruebas, bases de datos pequeñas o medianas, y servidores web de tráfico bajo o medio.
+
 8. ¿Aumentar el tamaño de la VM es una buena solución en este escenario?, ¿Qué pasa con la FibonacciApp cuando cambiamos el tamaño de la VM?
+
+   Ademas de bajar el uso de la maquina logramos ver que los tiempos de la peticion se vieron reducidos al hacer el cambio del tamaño de la maquina
+
+
 9. ¿Qué pasa con la infraestructura cuando cambia el tamaño de la VM? ¿Qué efectos negativos implica?
+   
+   El aumento del precio mensulamente.
+   
 10. ¿Hubo mejora en el consumo de CPU o en los tiempos de respuesta? Si/No ¿Por qué?
-11. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
+   
+   Si hubo mejora en los tiempos esto debido a que se vio un aumento en el procesador y la memorio por lo que haora puede realizar mas rapido los procesos y mayor memoria
+   para calcular el numero de la succecion de fibonacci.
+   
+12. Aumente la cantidad de ejecuciones paralelas del comando de postman a `4`. ¿El comportamiento del sistema es porcentualmente mejor?
+ 
+   si debido a que las peticiones se procesan en paralelo dando mejora en los tiempos.
 
 ### Parte 2 - Escalabilidad horizontal
 
@@ -213,15 +292,67 @@ newman run ARSW_LOAD-BALANCING_AZURE.postman_collection.json -e [ARSW_LOAD-BALAN
 
 **Preguntas**
 
-* ¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
-* ¿Cuál es el propósito del *Backend Pool*?
-* ¿Cuál es el propósito del *Health Probe*?
-* ¿Cuál es el propósito de la *Load Balancing Rule*? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
-* ¿Qué es una *Virtual Network*? ¿Qué es una *Subnet*? ¿Para qué sirven los *address space* y *address range*?
-* ¿Qué son las *Availability Zone* y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea *zone-redundant*?
-* ¿Cuál es el propósito del *Network Security Group*?
-* Informe de newman 1 (Punto 2)
-* Presente el Diagrama de Despliegue de la solución.
+¿Cuáles son los tipos de balanceadores de carga en Azure y en qué se diferencian?, ¿Qué es SKU, qué tipos hay y en qué se diferencian?, ¿Por qué el balanceador de carga necesita una IP pública?
+
+
+
+Azure Traffic Manager
+Azure Load Balancer
+Azure Application Gateway
+Azure Front Door
+
+
+
+¿Cuál es el propósito del Backend Pool?
+
+
+
+Es un componente crítico del balanceador de carga. Define el grupo de recursos que brindarán tráfico para una regla de equilibrio de carga determinada.
+
+
+
+¿Cuál es el propósito del Health Probe?
+
+
+
+Al usar reglas de equilibrio de carga con Azure Load Balancer, debe especificar Health probe para permitir que Load Balancer detecte el estado del punto de conexión de backend. La configuración del Health probe y las respuestas determinan qué instancias del grupo de backend recibirán nuevos flujos. Puede usar sondas de estado para detectar la falla de una aplicación en un endpoint de backend.
+
+
+
+¿Cuál es el propósito de la Load Balancing Rule? ¿Qué tipos de sesión persistente existen, por qué esto es importante y cómo puede afectar la escalabilidad del sistema?.
+
+
+
+Se usa para definir cómo se distribuye el tráfico entrante a todas las instancias dentro del grupo de backend. Una regla de equilibrio de carga asigna una configuración IP de frontend y un puerto determinados a varios puertos y direcciones IP de backend.
+
+
+
+¿Qué es una Virtual Network? ¿Qué es una Subnet? ¿Para qué sirven los address space y address range?
+
+
+
+es el bloque de construcción fundamental para su red privada en Azure. VNet permite que muchos tipos de recursos de Azure, como Azure Virtual Machines (VM), se comuniquen de forma segura entre sí, con Internet y con las redes locales, las subnets son divisiones de la red para poder organizarla de una mejor manera, es el rango de direcciones disponibles de la vnet y el address range es el rango de direcciones de la subnet
+
+
+
+¿Qué son las Availability Zone y por qué seleccionamos 3 diferentes zonas?. ¿Qué significa que una IP sea zone-redundant?
+
+
+
+son ubicaciones aisladas dentro de las regiones del data centers desde las que se originan y operan los servicios de nube pública, se seleccionan 3 diferentes para asi asegurar la disponibilidad del servicio en caso de que alguna falle, una ip zone redundant significa que el balanceador se puede comunicar con ella independiente de la zona
+
+
+
+¿Cuál es el propósito del Network Security Group?
+
+
+
+Filtrar el tráfico de red hacia y desde los recursos de Azure en una red virtual de Azure. Un grupo de seguridad de red contiene reglas de seguridad que permiten o deniegan el tráfico de red entrante o el tráfico de red saliente de varios tipos de recursos de Azure. Para cada regla, puede especificar origen y destino, puerto y protocolo.
+
+
+
+Informe de newman 1 (Punto 2)
+Presente el Diagrama de Despliegue de la solución.
 
 
 
