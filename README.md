@@ -50,7 +50,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
 7. La función que calcula en enésimo número de la secuencia de Fibonacci está muy mal construido y consume bastante CPU para obtener la respuesta. Usando la consola del Browser documente los tiempos de respuesta para dicho endpoint usando los siguintes valores:
    ![](images/part1/tiempo.PNG)
-<<<<<<< HEAD
+
     * 1000000 
     * 1010000
     * 1020000
@@ -61,7 +61,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
     * 1070000
     * 1080000
     * 1090000    
-=======
+
     * 1000000 22.81 segundos en ejecución
     * 1010000 23.23 segundos en ejecución
     * 1020000 23.86 segundos en ejecución
@@ -85,7 +85,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
     * 1070000 22.71 segundos en ejecución
     * 1080000 23.92 segundos en ejecución
     * 1090000 23.85 segundos en ejecución
->>>>>>> e744e6877ea74020a35487eaad8d952528fd1b31
+
 
 8. Dírijase ahora a Azure y verifique el consumo de CPU para la VM. (Los resultados pueden tardar 5 minutos en aparecer).
 
@@ -113,12 +113,6 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 
    `B2ms`
    ![](images/part1/b2msnewman.png)
-<<<<<<< HEAD
-
-   
-   
-=======
->>>>>>> e744e6877ea74020a35487eaad8d952528fd1b31
 
 11. La cantidad de CPU consumida es bastante grande y un conjunto considerable de peticiones concurrentes pueden hacer fallar nuestro servicio. Para solucionarlo usaremos una estrategia de Escalamiento Vertical. En Azure diríjase a la sección *size* y a continuación seleccione el tamaño `B2ms`.
 
@@ -131,11 +125,7 @@ Cuando un conjunto de usuarios consulta un enésimo número (superior a 1000000)
 Observando los resultados mostrados con `B1ls` y comparándolos con `B2ms` podemos ver que efectivamente los resultados son bastante notorios, ya que el consumo de un 90 a 100 % se vieron reducidos a un consumo de tan solo
 un 30 a 45 % de uso de la máquina.
 
-<<<<<<< HEAD
 13. Vuelva a dejar la VM en el tamaño inicial para evitar cobros adicionales.
-=======
-14. Vuelva a dejar la VM en el tamaño inicial para evitar cobros adicionales.
->>>>>>> e744e6877ea74020a35487eaad8d952528fd1b31
 
 **Preguntas**
 
@@ -162,19 +152,16 @@ con la aplicacion.
 4. Adjunte tabla de tiempos e interprete por qué la función tarda tando tiempo.
 
 ![](images/part1/pr4%20tabla.PNG)
-<<<<<<< HEAD
+
 5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU.
-=======
 
 debido a que no esta optimizado con una memoria por lo que caqada vez que se hace la misma peticion tiene que recalcular el numero de fibonacci.
-5. Adjunte imágen del consumo de CPU de la VM e interprete por qué la función consume esa cantidad de CPU. 
 
 ![](images/part1/cpu.PNG)
 
 esto se debe las caracteristicas de la maquina el nivel de memoria, procesamiento y almacenamineto son demaciado bajos lo que se requiere un nivel de uso de la maquina bastante
 alto
 
->>>>>>> e744e6877ea74020a35487eaad8d952528fd1b31
 6. Adjunte la imagen del resumen de la ejecución de Postman. Interprete:
     * Tiempos de ejecución de cada petición.
     * Si hubo fallos documentelos y explique.
